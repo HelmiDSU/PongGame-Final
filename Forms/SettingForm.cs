@@ -13,6 +13,7 @@ namespace PongGame
     public partial class SettingForm : Form
     {
         private Setting settings;
+        private List<Setting> changes = new List<Setting>();
  
         public SettingForm(Setting settings)
         {
@@ -45,8 +46,14 @@ namespace PongGame
                 settings.PaddleSpeed = paddleSpeed;
             }
 
+            changes.Add(settings);
             this.DialogResult = DialogResult.OK;
             this.Close();
+
+            foreach (var data in changes)
+            {
+                Console.WriteLine($"Ball speed: {data.BallSpeed}, Ball Color: {data.BallColor}, Paddle Speed: {data.PaddleSpeed}, Paddle Color: {data.PaddleColor}, Background Color: {data.BackGroundColor}");
+            }
         }
 
         private void ballColorButton_Click(object sender, EventArgs e)
@@ -92,5 +99,6 @@ namespace PongGame
         {
 
         }
+
     }
 }

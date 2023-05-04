@@ -14,6 +14,7 @@ namespace PongGame
     {
         private int points;
         private Label score;
+        
 
         public string ScoreText
         {
@@ -40,6 +41,7 @@ namespace PongGame
         {
             points++;
             score.Text = points.ToString();
+
         }
 
         public void Reset()

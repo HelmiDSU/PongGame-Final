@@ -32,7 +32,7 @@ namespace PongGame
         public Pong(MainMenu mainMenu, Setting settings)
         {
             InitializeComponent();
-            gameData = new GameData();
+            gameData = new GameData(); 
             this.settings = settings;
             p1 = new Paddle(player1, settings);
             p2 = new Paddle(player2, settings);
@@ -116,8 +116,9 @@ namespace PongGame
                 p2.MoveDown();
             }
 
-            GameDataEntry  entry = new GameDataEntry(ball.Left, ball.Top, player1.Top, player2.Top, DateTime.Now);
+            GameDataEntry  entry = new GameDataEntry(ball.Left, ball.Top, player1.Top, player2.Top, p1Score.Points, p2Score.Points , DateTime.Now);
             gameData.AddEntry(entry);
+            OutputGameData();
 
 
             // pongBall.Move();
@@ -152,10 +153,6 @@ namespace PongGame
             {
                 p2MoveDown = true;
             }
-            if(e.KeyCode == Keys.G)
-            {
-                OutputGameData();
-            }
         }
 
         private void Pong_KeyUp(object sender, KeyEventArgs e)
@@ -182,7 +179,7 @@ namespace PongGame
         {
             foreach (var data in gameData)
             {
-                Console.WriteLine($"Ball X: {data.BallX}, Ball Y: {data.BallY}, Paddle 1 Y: {data.Paddle1Y}, Paddle 2 Y: {data.Paddle2Y}, Timestamp: {data.Timestamp}");
+                Console.WriteLine($"Ball X: {data.BallX}, Ball Y: {data.BallY}, Paddle 1 Y: {data.Paddle1Y}, Paddle 2 Y: {data.Paddle2Y}, Player1 Points: {data.P1Points}, Player2 Points: {data.P2Points} Timestamp: {data.Timestamp}");
             }
         }
     }

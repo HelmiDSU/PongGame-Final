@@ -62,6 +62,7 @@ namespace PongGame
             paddlePictureBox.Location = location;
         }
 
+
         public Rectangle Bounds
         {
             get { return paddlePictureBox.Bounds; }
