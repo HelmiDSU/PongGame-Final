@@ -13,22 +13,24 @@ namespace PongGame
     public partial class MainMenu : Form
     {
         private Setting setting;
+        private Ball ball;
         public MainMenu()
         {
             InitializeComponent();
+            this.setting = new Setting();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            Pong game = new Pong(this);
+            Pong game = new Pong(this, setting);
             this.Hide();
             game.Show();
         }
 
         private void settings_Click(object sender, EventArgs e)
         {
-            SettingForm setingsForm= new SettingForm();
-            setingsForm.ShowDialog();
+            SettingForm settingsForm= new SettingForm(setting);
+            settingsForm.ShowDialog();
 
         }
 

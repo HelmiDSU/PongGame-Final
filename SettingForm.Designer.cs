@@ -33,6 +33,14 @@
             this.ballTextBox = new System.Windows.Forms.TextBox();
             this.paddleTextBox = new System.Windows.Forms.TextBox();
             this.save = new System.Windows.Forms.Button();
+            this.ballColorDialog = new System.Windows.Forms.ColorDialog();
+            this.paddleColorDialog = new System.Windows.Forms.ColorDialog();
+            this.backgroundDialog = new System.Windows.Forms.ColorDialog();
+            this.ballColorButton = new System.Windows.Forms.Button();
+            this.paddleColorButton = new System.Windows.Forms.Button();
+            this.backgroundColorButton = new System.Windows.Forms.Button();
+            this.colorChange = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -77,11 +85,65 @@
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
+            // ballColorButton
+            // 
+            this.ballColorButton.Location = new System.Drawing.Point(140, 266);
+            this.ballColorButton.Name = "ballColorButton";
+            this.ballColorButton.Size = new System.Drawing.Size(75, 23);
+            this.ballColorButton.TabIndex = 5;
+            this.ballColorButton.Text = "Ball";
+            this.ballColorButton.UseVisualStyleBackColor = true;
+            this.ballColorButton.Click += new System.EventHandler(this.ballColorButton_Click);
+            // 
+            // paddleColorButton
+            // 
+            this.paddleColorButton.Location = new System.Drawing.Point(293, 266);
+            this.paddleColorButton.Name = "paddleColorButton";
+            this.paddleColorButton.Size = new System.Drawing.Size(75, 23);
+            this.paddleColorButton.TabIndex = 6;
+            this.paddleColorButton.Text = "Paddle";
+            this.paddleColorButton.UseVisualStyleBackColor = true;
+            this.paddleColorButton.Click += new System.EventHandler(this.paddleColorButton_Click);
+            // 
+            // backgroundColorButton
+            // 
+            this.backgroundColorButton.Location = new System.Drawing.Point(186, 313);
+            this.backgroundColorButton.Name = "backgroundColorButton";
+            this.backgroundColorButton.Size = new System.Drawing.Size(120, 32);
+            this.backgroundColorButton.TabIndex = 7;
+            this.backgroundColorButton.Text = "Background";
+            this.backgroundColorButton.UseVisualStyleBackColor = true;
+            this.backgroundColorButton.Click += new System.EventHandler(this.backgroundColorButton_Click);
+            // 
+            // colorChange
+            // 
+            this.colorChange.AutoSize = true;
+            this.colorChange.Location = new System.Drawing.Point(196, 209);
+            this.colorChange.Name = "colorChange";
+            this.colorChange.Size = new System.Drawing.Size(96, 16);
+            this.colorChange.TabIndex = 8;
+            this.colorChange.Text = "Change Colors";
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(12, 375);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 9;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(752, 416);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.colorChange);
+            this.Controls.Add(this.backgroundColorButton);
+            this.Controls.Add(this.paddleColorButton);
+            this.Controls.Add(this.ballColorButton);
             this.Controls.Add(this.save);
             this.Controls.Add(this.paddleTextBox);
             this.Controls.Add(this.ballTextBox);
@@ -101,5 +163,13 @@
         private System.Windows.Forms.TextBox ballTextBox;
         private System.Windows.Forms.TextBox paddleTextBox;
         private System.Windows.Forms.Button save;
+        private System.Windows.Forms.ColorDialog ballColorDialog;
+        private System.Windows.Forms.ColorDialog paddleColorDialog;
+        private System.Windows.Forms.ColorDialog backgroundDialog;
+        private System.Windows.Forms.Button ballColorButton;
+        private System.Windows.Forms.Button paddleColorButton;
+        private System.Windows.Forms.Button backgroundColorButton;
+        private System.Windows.Forms.Label colorChange;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

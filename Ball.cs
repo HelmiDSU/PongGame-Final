@@ -28,6 +28,19 @@ namespace PongGame
                 xSpeed = value; ySpeed = value;
             }
         }
+
+        public Color color
+        {
+            get
+            {
+                return color;
+            }
+            set
+            {
+                ball.BackColor = value;
+            }
+        }
+
         public Ball(PictureBox ball, Setting settings)
         {
             this.settings = settings;

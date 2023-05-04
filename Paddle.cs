@@ -12,12 +12,25 @@ namespace PongGame
     {
         private PictureBox paddlePictureBox;
         private int speed;
+        private Setting settings;
         private Point location;
-
-        public Paddle(PictureBox pictureBox, int startSpeed)
+        public Color color 
         {
+            get
+            {
+                return color;
+            }
+            set
+            {
+                paddlePictureBox.BackColor = value;
+            }
+        }
+
+        public Paddle(PictureBox pictureBox, Setting settings)
+        {
+            this.settings = settings; 
             paddlePictureBox = pictureBox;
-            speed = startSpeed;
+            speed = settings.PaddleSpeed;
             location = pictureBox.Location;
         }
 

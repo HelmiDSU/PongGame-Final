@@ -41,8 +41,8 @@ namespace PongGame
             this.form = form;
             this.settings = settings;
             this.ball = new Ball(ball, settings);
-            this.paddle1 = new Paddle(paddle1, 7);
-            this.paddle2 = new Paddle(paddle2, 7);
+            this.paddle1 = new Paddle(paddle1, settings);
+            this.paddle2 = new Paddle(paddle2, settings);
             this.p1Score = p1Score;
             this.p2Score = p2Score;
 

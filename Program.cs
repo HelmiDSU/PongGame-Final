@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PongGame.Properties;
 
 namespace PongGame
 {
@@ -17,7 +18,8 @@ namespace PongGame
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainMenu mainMenu = new MainMenu();
-            Pong pongGame = new Pong(mainMenu);
+            Setting settings = new Setting();
+            Pong pongGame = new Pong(mainMenu, settings);
             Application.Run(mainMenu);
         }
     }

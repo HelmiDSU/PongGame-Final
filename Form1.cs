@@ -27,16 +27,23 @@ namespace PongGame
         private int ballSpeed;
         private int pongSpeed;
         private Setting settings;
-        public Pong(MainMenu mainMenu)
+
+
+        public Pong(MainMenu mainMenu, Setting settings)
         {
             InitializeComponent();
-            ballSpeed = 10;
-            p1 = new Paddle(player1, 10);
-            p2 = new Paddle(player2, 10);
-            settings = new Setting();
+            this.settings = settings;
+            p1 = new Paddle(player1, settings);
+            p2 = new Paddle(player2, settings);
             pongBall = new Ball(ball, settings);
+            pongBall.Speed = settings.BallSpeed;
+            p1.Speed = settings.PaddleSpeed;
+            p2.Speed = settings.PaddleSpeed;
+            p1.color = settings.PaddleColor;
+            p2.color = settings.PaddleColor;
             p1Score = new Score(player1Score);
             p2Score = new Score(player2Score);
+            this.BackColor = settings.BackGroundColor;
             // game = new Game(pongBall, p1, p2, this.ClientSize.Width, this.ClientSize.Height);
             game = new Game(this, ball, player1, player2, p1Score, p2Score, settings);
             timer = new Timer();
