@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PongGame.Properties;
 
 namespace PongGame
 {
@@ -51,6 +52,7 @@ namespace PongGame
             this.height = form.ClientSize.Height;
         }
 
+
         public void Update()
         {
 
@@ -80,24 +82,28 @@ namespace PongGame
                 }
                 if (p1Score.Points == 5 || p2Score.Points == 5)
                 {
-                        Reset();
-                        Pause();
+                    Reset();
+                    Pause();
+                    form.Dispose();
+                    var gameOverForm = new GameOver(p1Score.Points >= 5 ? "Player 1" : "Player2");
+                    var result = gameOverForm.ShowDialog();
 
-                        var gameOverForm = new GameOver(p1Score.Points >= 5 ? "Player 1" : "Player2");
-                        var result = gameOverForm.ShowDialog();
+                    if (result == DialogResult.Retry)
+                    {
+                        Pong game = new Pong(gameOverForm, settings);
+                        game.Show();
+                        gameOverForm.Close();
+                        gameStarted = false;
 
-                        if (result == DialogResult.Retry)
-                        {
-                            Reset();
-                            gameOverForm.Close();
-
-                        }
-                        else if (result == DialogResult.Cancel)
-                        {
-                            var mainMenuForm = new MainMenu();
-                            mainMenuForm.ShowDialog();
-                            form.Hide();
-                        }
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        form.Dispose();
+                        gameOverForm.Close();
+                        gameStarted = false;
+                        var mainMenuForm = new MainMenu();
+                        mainMenuForm.ShowDialog();
+                     }
                 }
             }
            

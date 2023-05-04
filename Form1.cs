@@ -25,11 +25,14 @@ namespace PongGame
         private Score p2Score;
         private MainMenu mainMenu;
         private Setting settings;
-
+        private GameOver gameOver;
+        private bool gameStarted = false;
+        private GameData gameData;
 
         public Pong(MainMenu mainMenu, Setting settings)
         {
             InitializeComponent();
+            gameData = new GameData();
             this.settings = settings;
             p1 = new Paddle(player1, settings);
             p2 = new Paddle(player2, settings);
@@ -52,6 +55,32 @@ namespace PongGame
             this.mainMenu = mainMenu;
         }
 
+        public Pong(GameOver gameOver, Setting settings)
+        {
+            InitializeComponent();
+            gameData = new GameData();
+            this.settings = settings;
+            p1 = new Paddle(player1, settings);
+            p2 = new Paddle(player2, settings);
+            pongBall = new Ball(ball, settings);
+            pongBall.Speed = settings.BallSpeed;
+            p1.Speed = settings.PaddleSpeed;
+            p2.Speed = settings.PaddleSpeed;
+            p1.color = settings.PaddleColor;
+            p2.color = settings.PaddleColor;
+            pongBall.color = settings.BallColor;
+            p1Score = new Score(player1Score);
+            p2Score = new Score(player2Score);
+            this.BackColor = settings.BackGroundColor;
+            // game = new Game(pongBall, p1, p2, this.ClientSize.Width, this.ClientSize.Height);
+            game = new Game(this, ball, player1, player2, p1Score, p2Score, settings);
+            timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += moveTimerEvent;
+            timer.Start();
+            this.gameOver = gameOver;
+        }
+
         public void UpdateBallSpeed(Ball ball, int speed)
         {
             ball.Speed = speed;
@@ -64,6 +93,12 @@ namespace PongGame
 
         private void moveTimerEvent(object sender, EventArgs e)
         {
+            if (!gameStarted)
+            {
+                return;
+            }
+
+
             if (p1MoveUp == true && player1.Top > 0)
             {
                 p1.MoveUp();
@@ -80,9 +115,23 @@ namespace PongGame
             {
                 p2.MoveDown();
             }
-           // pongBall.Move();
-             game.Update();
 
+            GameDataEntry  entry = new GameDataEntry(ball.Left, ball.Top, player1.Top, player2.Top, DateTime.Now);
+            gameData.AddEntry(entry);
+
+
+            // pongBall.Move();
+            game.Update();
+
+
+        }
+
+        private void start_Click(object sender, EventArgs e)
+        {
+            gameStarted = true;
+            moveTimerEvent(sender, e);
+            start.Visible = false; 
+            this.Focus();
         }
 
         private void Pong_KeyDown(object sender, KeyEventArgs e)
@@ -103,6 +152,10 @@ namespace PongGame
             {
                 p2MoveDown = true;
             }
+            if(e.KeyCode == Keys.G)
+            {
+                OutputGameData();
+            }
         }
 
         private void Pong_KeyUp(object sender, KeyEventArgs e)
@@ -122,6 +175,14 @@ namespace PongGame
             if (e.KeyCode == Keys.Down)
             {
                 p2MoveDown = false;
+            }
+        }
+
+        private void OutputGameData()
+        {
+            foreach (var data in gameData)
+            {
+                Console.WriteLine($"Ball X: {data.BallX}, Ball Y: {data.BallY}, Paddle 1 Y: {data.Paddle1Y}, Paddle 2 Y: {data.Paddle2Y}, Timestamp: {data.Timestamp}");
             }
         }
     }

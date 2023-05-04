@@ -69,8 +69,6 @@ namespace PongGame
                 paddleColorButton.BackColor = paddleColorDialog.Color;
             }
             settings.PaddleColor = paddleColorButton.BackColor;
-
-
         }
 
         private void backgroundColorButton_Click(object sender, EventArgs e)
@@ -88,6 +86,11 @@ namespace PongGame
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

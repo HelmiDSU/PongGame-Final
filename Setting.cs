@@ -22,7 +22,7 @@ namespace PongGame
             }
             set
             {
-                ballColor = value;
+                paddleColor = value;
             } 
         }
         public Color BallColor

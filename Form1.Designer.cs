@@ -35,6 +35,7 @@
             this.player1Score = new System.Windows.Forms.Label();
             this.player2Score = new System.Windows.Forms.Label();
             this.moveTimer = new System.Windows.Forms.Timer(this.components);
+            this.start = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.player1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
@@ -96,12 +97,23 @@
             this.moveTimer.Interval = 20;
             this.moveTimer.Tick += new System.EventHandler(this.moveTimerEvent);
             // 
+            // start
+            // 
+            this.start.Location = new System.Drawing.Point(652, 467);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(238, 88);
+            this.start.TabIndex = 5;
+            this.start.Text = "Press to Play";
+            this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.start_Click);
+            // 
             // Pong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1569, 749);
+            this.Controls.Add(this.start);
             this.Controls.Add(this.player2Score);
             this.Controls.Add(this.player1Score);
             this.Controls.Add(this.ball);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.Label player1Score;
         private System.Windows.Forms.Label player2Score;
         private System.Windows.Forms.Timer moveTimer;
+        private System.Windows.Forms.Button start;
     }
 }
 
