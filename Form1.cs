@@ -41,6 +41,7 @@ namespace PongGame
             p2.Speed = settings.PaddleSpeed;
             p1.color = settings.PaddleColor;
             p2.color = settings.PaddleColor;
+            pongBall.color = settings.BallColor;
             p1Score = new Score(player1Score);
             p2Score = new Score(player2Score);
             this.BackColor = settings.BackGroundColor;

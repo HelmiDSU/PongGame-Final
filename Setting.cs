@@ -9,11 +9,44 @@ namespace PongGame
 {
     public class Setting
     {
-        private int ballSpeed = 50;
+        private int ballSpeed = 20;
         private int paddleSpeed = 7;
-        public Color PaddleColor { get; set; }
-        public Color BallColor { get; set; }
-        public Color BackGroundColor { get; set; }
+        private Color paddleColor = Color.White;
+        private Color ballColor = Color.White;
+        private Color backGroundColor = Color.Black;
+        public Color PaddleColor 
+        {
+            get
+            {
+                return paddleColor;
+            }
+            set
+            {
+                ballColor = value;
+            } 
+        }
+        public Color BallColor
+        {
+            get
+            {
+                return ballColor;
+            }
+            set
+            {
+                ballColor = value;
+            }
+        }
+        public Color BackGroundColor
+        {
+            get
+            {
+                return backGroundColor;
+            }
+            set
+            {
+                backGroundColor = value;
+            }
+        }
 
         public int BallSpeed
         {

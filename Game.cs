@@ -19,6 +19,7 @@ namespace PongGame
         private int width;
         private int height;
         private int speed;
+        private bool gameStarted = false;
 
         public Paddle Paddle1
         {
@@ -52,30 +53,50 @@ namespace PongGame
 
         public void Update()
         {
-            // Move the ball
-            ball.Move();
 
-            // Check for collision with the paddle
-            if (ball.Bounds.IntersectsWith(paddle1.Bounds) || ball.Bounds.IntersectsWith(paddle2.Bounds))
+            if (!gameStarted)
             {
-                ball.ReverseXVelocity();
+                StartGameDelay();
             }
-            if (ball.Bounds.Left <= 0)
+            else
             {
-                p2Score.Goal();
-                ball.Reset();
+                // Move the ball
+                ball.Move();
+
+                // Check for collision with the paddle
+                if (ball.Bounds.IntersectsWith(paddle1.Bounds) || ball.Bounds.IntersectsWith(paddle2.Bounds))
+                {
+                    ball.ReverseXVelocity();
+                }
+                if (ball.Bounds.Left <= 0)
+                {
+                    p2Score.Goal();
+                    ball.Reset();
+                }
+                if (ball.Bounds.Right >= width)
+                {
+                    p1Score.Goal();
+                    ball.Reset();
+                }
+                if (p1Score.Points == 5 || p2Score.Points == 5)
+                {
+                    Reset();
+                }
             }
-            if (ball.Bounds.Right  >= width)
-            {
-                p1Score.Goal();
-                ball.Reset();
-            }
-            if (p1Score.Points == 5 || p2Score.Points == 5)
-            {
-                Reset();
-            }
+           
         }
 
+        private void StartGameDelay()
+        {
+            var timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += (sender, args) =>
+            {
+                timer.Stop();
+                gameStarted = true;
+            };
+            timer.Start();
+        }
         public void Reset()
         {
             ball.Reset();
