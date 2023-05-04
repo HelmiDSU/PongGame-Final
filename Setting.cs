@@ -9,7 +9,7 @@ namespace PongGame
 {
     public class Setting
     {
-        private int ballSpeed = 20;
+        private int ballSpeed = 10;
         private int paddleSpeed = 7;
         private Color paddleColor = Color.White;
         private Color ballColor = Color.White;

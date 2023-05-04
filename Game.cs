@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -79,24 +80,24 @@ namespace PongGame
                 }
                 if (p1Score.Points == 5 || p2Score.Points == 5)
                 {
-                    Reset();
-                    Pause();
-
-                    var gameOverForm = new GameOver(p1Score.Points>= 5 ? "Player 1" : "Player2");
-                    var result = gameOverForm.ShowDialog();
-
-                    if (result == DialogResult.Retry)
-                    {
                         Reset();
-                        gameOverForm.Close();
+                        Pause();
 
-                    }
-                    else if(result == DialogResult.Cancel)
-                    {
-                        var mainMenuForm = new MainMenu();
-                        mainMenuForm.ShowDialog();
-                        form.Hide();
-                    }
+                        var gameOverForm = new GameOver(p1Score.Points >= 5 ? "Player 1" : "Player2");
+                        var result = gameOverForm.ShowDialog();
+
+                        if (result == DialogResult.Retry)
+                        {
+                            Reset();
+                            gameOverForm.Close();
+
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            var mainMenuForm = new MainMenu();
+                            mainMenuForm.ShowDialog();
+                            form.Hide();
+                        }
                 }
             }
            

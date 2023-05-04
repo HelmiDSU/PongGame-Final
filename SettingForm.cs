@@ -45,9 +45,6 @@ namespace PongGame
                 settings.PaddleSpeed = paddleSpeed;
             }
 
-            settings.PaddleColor = paddleColorButton.BackColor;
-            settings.BallColor = ballColorButton.BackColor;
-            settings.BackGroundColor= backgroundColorButton.BackColor;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -59,6 +56,8 @@ namespace PongGame
             {
                 ballColorButton.BackColor = ballColorDialog.Color;
             }
+            settings.BallColor = ballColorButton.BackColor;
+
 
         }
 
@@ -69,6 +68,8 @@ namespace PongGame
             {
                 paddleColorButton.BackColor = paddleColorDialog.Color;
             }
+            settings.PaddleColor = paddleColorButton.BackColor;
+
 
         }
 
@@ -79,6 +80,8 @@ namespace PongGame
             {
                 backgroundColorButton.BackColor = backgroundDialog.Color;
             }
+            settings.BackGroundColor = backgroundColorButton.BackColor;
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
