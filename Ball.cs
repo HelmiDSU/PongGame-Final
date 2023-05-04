@@ -12,8 +12,8 @@ namespace PongGame
 {
     public class Ball
     {
-        private PictureBox ball;
         private Setting settings;
+        private PictureBox ball;
         private int xSpeed, ySpeed;
         private int xMax, yMax;
 

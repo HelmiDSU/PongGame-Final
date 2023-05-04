@@ -18,7 +18,6 @@ namespace PongGame
         private Setting settings;
         private int width;
         private int height;
-        private int speed;
         private bool gameStarted = false;
 
         public Paddle Paddle1
@@ -81,6 +80,23 @@ namespace PongGame
                 if (p1Score.Points == 5 || p2Score.Points == 5)
                 {
                     Reset();
+                    Pause();
+
+                    var gameOverForm = new GameOver(p1Score.Points>= 5 ? "Player 1" : "Player2");
+                    var result = gameOverForm.ShowDialog();
+
+                    if (result == DialogResult.Retry)
+                    {
+                        Reset();
+                        gameOverForm.Close();
+
+                    }
+                    else if(result == DialogResult.Cancel)
+                    {
+                        var mainMenuForm = new MainMenu();
+                        mainMenuForm.ShowDialog();
+                        form.Hide();
+                    }
                 }
             }
            
@@ -105,6 +121,13 @@ namespace PongGame
             paddle1.Reset();
             paddle2.Reset();
 
+        }
+
+        public void Pause()
+        {
+            ball.Speed = 0;
+            paddle1.Speed = 0;
+            paddle2.Speed = 0;
         }
     }
 }

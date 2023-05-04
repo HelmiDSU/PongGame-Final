@@ -13,7 +13,6 @@ namespace PongGame
     public partial class MainMenu : Form
     {
         private Setting setting;
-        private Ball ball;
         public MainMenu()
         {
             InitializeComponent();

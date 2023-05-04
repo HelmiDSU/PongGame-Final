@@ -24,8 +24,6 @@ namespace PongGame
         private Score p1Score;
         private Score p2Score;
         private MainMenu mainMenu;
-        private int ballSpeed;
-        private int pongSpeed;
         private Setting settings;
 
 
