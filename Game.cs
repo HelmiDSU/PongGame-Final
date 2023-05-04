@@ -15,9 +15,10 @@ namespace PongGame
         private Paddle paddle2;
         private Score p1Score;
         private Score p2Score;
+        private Setting settings;
         private int width;
         private int height;
-        private bool rightWallHit = true;
+        private int speed;
 
         public Paddle Paddle1
         {
@@ -35,10 +36,11 @@ namespace PongGame
             }
         }
 
-        public Game(Form form, PictureBox ball, PictureBox paddle1, PictureBox paddle2, Score p1Score, Score p2Score)
+        public Game(Form form, PictureBox ball, PictureBox paddle1, PictureBox paddle2, Score p1Score, Score p2Score, Setting settings)
         {
             this.form = form;
-            this.ball = new Ball(ball);
+            this.settings = settings;
+            this.ball = new Ball(ball, settings);
             this.paddle1 = new Paddle(paddle1, 7);
             this.paddle2 = new Paddle(paddle2, 7);
             this.p1Score = p1Score;

@@ -15,6 +15,11 @@ namespace PongGame
         private int points;
         private Label score;
 
+        public string ScoreText
+        {
+            get { return score.Text; }
+        }
+
         public Score(Label score)
         {
             this.score = score;

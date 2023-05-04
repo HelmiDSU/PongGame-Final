@@ -16,7 +16,9 @@ namespace PongGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Pong());
+            MainMenu mainMenu = new MainMenu();
+            Pong pongGame = new Pong(mainMenu);
+            Application.Run(mainMenu);
         }
     }
 }

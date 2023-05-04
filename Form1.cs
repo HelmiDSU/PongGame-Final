@@ -23,22 +23,32 @@ namespace PongGame
         private Game game;
         private Score p1Score;
         private Score p2Score;
-
-        public Pong()
+        private MainMenu mainMenu;
+        private int ballSpeed;
+        private int pongSpeed;
+        private Setting settings;
+        public Pong(MainMenu mainMenu)
         {
             InitializeComponent();
+            ballSpeed = 10;
             p1 = new Paddle(player1, 10);
             p2 = new Paddle(player2, 10);
-            pongBall = new Ball(ball);
+            settings = new Setting();
+            pongBall = new Ball(ball, settings);
             p1Score = new Score(player1Score);
             p2Score = new Score(player2Score);
             // game = new Game(pongBall, p1, p2, this.ClientSize.Width, this.ClientSize.Height);
-            game = new Game(this, ball, player1, player2, p1Score, p2Score);
+            game = new Game(this, ball, player1, player2, p1Score, p2Score, settings);
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += moveTimerEvent;
             timer.Start();
+            this.mainMenu = mainMenu;
+        }
 
+        public void UpdateBallSpeed(Ball ball, int speed)
+        {
+            ball.Speed = speed;
         }
 
         private void Pong_Load(object sender, EventArgs e)

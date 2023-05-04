@@ -13,16 +13,35 @@ namespace PongGame
     public class Ball
     {
         private PictureBox ball;
+        private Setting settings;
         private int xSpeed, ySpeed;
         private int xMax, yMax;
 
-        public Ball(PictureBox ball)
+        public int Speed
         {
+            get
+            {
+                return Math.Abs(xSpeed);
+            }
+            set
+            {
+                xSpeed = value; ySpeed = value;
+            }
+        }
+        public Ball(PictureBox ball, Setting settings)
+        {
+            this.settings = settings;
             this.ball = ball;
-            xSpeed = 10;
-            ySpeed = 10;
+            xSpeed = settings.BallSpeed; 
+            ySpeed = settings.BallSpeed;
             xMax = ball.Parent.ClientSize.Width - ball.Width;
             yMax = ball.Parent.ClientSize.Height - ball.Height;
+        }
+
+        public void UpdateSpeed(int speed)
+        {
+            xSpeed = speed;
+            ySpeed = speed;
         }
 
         public void Move()
@@ -65,8 +84,8 @@ namespace PongGame
         {
             ball.Location = new Point((ball.Parent.ClientSize.Width - ball.Width) / 2, (ball.Parent.ClientSize.Height - ball.Height) / 2);
             Random rand = new Random();
-            int xDirection = rand.Next(0,3) == 0 ? -1 : 1;
-            int yDirection = rand.Next(0,3) == 0 ? -1 : 1;
+            int xDirection = rand.Next(2) * 2 - 1;
+            int yDirection = rand.Next(2) * 2 - 1;
             xSpeed = Math.Abs(xSpeed) * xDirection;
             ySpeed = Math.Abs(ySpeed) * yDirection;
         }

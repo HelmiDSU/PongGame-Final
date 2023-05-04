@@ -21,15 +21,27 @@ namespace PongGame
             location = pictureBox.Location;
         }
 
+        public int Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
         public void MoveUp()
         {
-            paddlePictureBox.Top -= speed;
+            if (paddlePictureBox.Top > 0)
+            {
+                paddlePictureBox.Top -= speed;
+
+            }
         }
 
 
         public void MoveDown()
         {
-            paddlePictureBox.Top += speed;
+            if (paddlePictureBox.Bottom < paddlePictureBox.Parent.ClientSize.Height)
+            {
+                paddlePictureBox.Top += speed;
+            }
         }
 
         public void Reset()
